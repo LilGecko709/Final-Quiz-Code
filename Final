@@ -1,0 +1,106 @@
+import time
+
+# Introduction Code
+print("Welcome to my quiz")
+Player_Name = input("Please input your name ")
+print("Hello", Player_Name, "This is a quiz about league of legends")
+print("a game with an active monthly player base of 100 million.")
+print("This is a general knowledge quiz about the game")
+print("with everything from how many champions are in the game")
+print("to what champions you would pick")
+# Explaining to the player the rules and how to play the quiz
+print("A question will be asked you will input a,b,c,d respectively")
+print("for the answer of which you think is correct ")
+time.sleep(3)
+
+# Question dictionary, with lists for answers
+questions = {
+    "How many champions are in League of Legends as of patch 10.15?":
+        ['a. 148', 'b. 132', 'c. 150', 'd. 156', 'a'],
+    "What's the continent where the League of Legends resides called?":
+        ['a. Demacia', 'b. Bandle City', 'c. Tuscon', 'd. Valoran', 'd'],
+    "If a player picked an enchanter, what would be the best counter pick?":
+        ['a. An Assassin', 'b. Enchanter', 'c. Tank', 'd. Burst mage', 'a'],
+    "What champion has the ultimate known as Curtain Call":
+        ['a. Caitlyn', 'b. Jhin', 'c. Talon', 'd. Ornn', 'b'],
+    "What champion has the most skins as of 2020?":
+        ['a. Lux', 'b. Ahri', 'c. Ezreal', 'd. Alistair', 'c'],
+    "What year was league of legends released":
+        ['a. 2009', 'b. 2010', 'c. 2011', 'd. 2012', 'a'],
+    "Cassiopia is half human and half ____":
+        ['a. bird', 'b. horse', 'c. lion', 'd. snake', 'd'],
+    "Which tribe does the champion Leona belong to":
+        ['a. Noxus', 'b. Solari', 'c. Demacia', 'd. Frostguard', 'b'],
+    "What animals are seen in the Howling Abyss map":
+        ['a. yordlings', 'b. poros', 'c. unicorns', 'd. mermaids', 'b'],
+    "Who is Ashe's husband champion":
+        ['a. trundle', 'b. sejuani', 'c. tryndamere', 'd. braum', 'c'], }
+# Setting the variables
+score = 0
+counter = 0
+answerA = "a"
+answerB = "b"
+answerC = "c"
+answerD = "d"
+
+
+# Error checking method to be called on during for loop
+def intcheck(question, a, b, c, d):
+
+    while True:
+        error = "whoops! Please enter a letter  {} , {}, {} or {} ".format
+        (a, b, c, d)
+# Code so if the player inputs an
+# incorrect answer gives them a chance to change it
+        try:
+            response = str(input("Are you sure? Re-enter your choice...."))
+            if response == "a" or response == "b" or response == "c" or response == "d":
+                return response
+            else:
+                print(error)
+        except ValueError:
+            print(error)
+run = True
+# Main question loop
+for question_number, question in enumerate(questions):
+    print ("Question", question_number+1)
+    print (question)
+    for options in questions[question][:-1]:
+        print (options)
+    user_choice = input("Make your choice : ")
+    if user_choice == questions[question][-1]:
+        print ("Correct! well done")
+        score += 1
+        counter += 1
+        print ("your current score is", score)
+        if counter == 10:
+                    print("thank you for playing this is the end")
+                    time.sleep(3)
+                    exit(0)
+
+    elif (user_choice != 'a') or (user_choice != 'b') or (user_choice != 'c') or (user_choice != 'd'):
+            num_1 = intcheck
+            ("Enter a letter a, b, c or d", answerA, answerB, answerC, answerD)
+            user_choice = num_1
+            #
+            if user_choice == questions[question][-1]:
+                counter += 1
+                print ("Correct")
+                score += 1
+                print ("your current score is", score)
+            else:
+                counter += 1
+                print("sorry that is incorrect")
+                print("your score is", score)
+# If the player inputs an incorrect answer give them an option to quit the quiz
+                choice = input("Do you wish to continue please enter yes to continue ")
+                if choice == 'yes':
+                    run = True
+                # This will re run the loop and continue with the questions
+                else:
+                    print("you got", score, "thank you for playing my quiz")
+                    run = False
+        # This will stop the question loop and let the player out of the quiz
+                    print("Thank you for playing, exiting quiz")
+                    time.sleep(3)
+                    exit(0)
